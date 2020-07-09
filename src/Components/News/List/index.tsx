@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {
   Grid, Card, CardMedia, CardContent, CardActionArea, Typography,
-  Fab,
+  Fab, Box,
 } from '@material-ui/core';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
@@ -43,17 +43,24 @@ export default function NewsList({ token, news, setUpdatedNews }: NewsListProps)
 
   return (
     <>
+      <Grid container justify="center" alignItems="center">
+        <Typography variant="h3" component="h3">
+          Cadastro de Notícias
+        </Typography>
+      </Grid>
+      {news
+      && (
       <Grid container justify="space-around" alignItems="center">
         {news.map((n) => (
           <React.Fragment key={`${n._id}`}>
             <Grid item xs={8} style={{ padding: '20px 0 20px 0' }}>
               <Card onClick={() => newsCard_OnClick(`${n._id}`)}>
-                <CardActionArea>
+                <CardActionArea style={{ height: '100%' }}>
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
                       {n.titulo}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p" style={{ whiteSpace: 'pre-wrap' }}>
+                    <Typography variant="body2" color="textSecondary" component="p" style={{ whiteSpace: 'pre-wrap', maxHeight: '100px' }} noWrap>
                       {n.conteudo}
                     </Typography>
                   </CardContent>
@@ -69,9 +76,22 @@ export default function NewsList({ token, news, setUpdatedNews }: NewsListProps)
           </React.Fragment>
         ))}
       </Grid>
-      <Fab color="primary" style={{ position: 'fixed', bottom: '20px', right: '40px' }} onClick={() => fabAddNews_OnClick()}>
-        <AddIcon />
-      </Fab>
+      )}
+      <Grid container style={{ position: 'fixed', bottom: '20px', right: '40px' }} justify="flex-end" alignItems="center">
+        {news.length === 0
+      && (
+        <Grid item style={{ margin: '0 50px' }}>
+          <Typography variant="h5" component="h2">
+            Para começar a inserir notícias, utilize esse ícone >>>
+          </Typography>
+        </Grid>
+      )}
+        <Grid item>
+          <Fab color="primary" onClick={() => fabAddNews_OnClick()}>
+            <AddIcon />
+          </Fab>
+        </Grid>
+      </Grid>
     </>
   );
 }

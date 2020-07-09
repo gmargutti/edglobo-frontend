@@ -4,9 +4,9 @@ Repositório criado para disponibilizar o acesso ao código desenvolvido para o 
 
 ### Ferramentas Utilizadas
 
-Docker - Containers
-React - Framework para SPA Web
-Serve - Utilitário para servir arquivos estáticos, está sendo utilizado para servir o build do React
+Docker - Containers<br/>
+React - Framework para SPA Web<br/>
+Serve - Utilitário para servir arquivos estáticos, está sendo utilizado para servir o build do React<br/>
 
 # Instalação
 
